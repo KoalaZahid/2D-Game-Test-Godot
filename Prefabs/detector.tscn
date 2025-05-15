@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bexqj032she52"]
+
+[ext_resource type="Script" uid="uid://ex40ywdyb1du" path="res://Scripts/detector.gd" id="1_kiji7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tf4g"]
+size = Vector2(12, 12)
+
+[sub_resource type="Gradient" id="Gradient_kiji7"]
+offsets = PackedFloat32Array(0.741445, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_btphw"]
+gradient = SubResource("Gradient_kiji7")
+width = 12
+height = 12
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Detector" type="Area2D"]
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_kiji7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8tf4g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.300051, 0.236805, 1)
+texture_filter = 1
+texture = SubResource("GradientTexture2D_btphw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
